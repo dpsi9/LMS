@@ -9,18 +9,18 @@ datasource db {
 }
 
 model Course {
-  id           String        @id @default(uuid())
-  userId       String
-  title        String        @db.Text
-  description  String?       @db.Text
-  imageUrl     String?       @db.Text
-  price        Float?
-  isPublished  Boolean       @default(false)
-  categoryId   String?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  category     Category?     @relation(fields: [categoryId], references: [id])
-  attatchments Attatchment[]
+  id          String       @id @default(uuid())
+  userId      String
+  title       String       @db.Text
+  description String?      @db.Text
+  imageUrl    String?      @db.Text
+  price       Float?
+  isPublished Boolean      @default(false)
+  categoryId  String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  category    Category?    @relation(fields: [categoryId], references: [id])
+  attachments Attachment[]
 
   @@index([categoryId])
 }
@@ -31,7 +31,7 @@ model Category {
   courses Course[]
 }
 
-model Attatchment {
+model Attachment {
   id        String   @id @default(uuid())
   name      String
   url       String   @db.Text
