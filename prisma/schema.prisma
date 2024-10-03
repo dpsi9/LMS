@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch","fullTextIndex"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -104,17 +104,21 @@ model Purchase {
   courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
+  razorpayOrderId   String // Razorpay Order ID
+  razorpayPaymentId String // Razorpay Payment ID
+  razorpaySignature String // Razorpay signature verification
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([userId,courseId])
+  @@unique([userId, courseId])
   @@index([courseId])
 }
 
-model SripeCustomer {
-  id               String @id @default(uuid())
-  userId           String @unique
-  stripeCustomerId String @unique
+model RazorpayCustomer {
+  id                 String @id @default(uuid())
+  userId             String @unique
+  razorpayCustomerId String @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
