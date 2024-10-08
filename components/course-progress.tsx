@@ -1,4 +1,5 @@
 import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 
 interface CourseProgressProps {
     value: number;
